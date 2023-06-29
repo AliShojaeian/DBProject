@@ -10,5 +10,28 @@ session = Session()
 Base = declarative_base()
 
 
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True)
+    username = Column(String, unique=True)
+    password = Column(String)
+    isAdmin = Column(Boolean)
+
+
+class Message(Base):
+    __tablename__ = 'messages'
+
+    id = Column(Integer, primary_key=True)
+    sender = Column(String)
+    receiver = Column(String)
+    content = Column(String)
+    date = Column(DateTime)
+    isRead = Column(Boolean)
+
+
+Base.metadata.create_all(engine)
+
+
 
         
