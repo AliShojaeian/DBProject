@@ -71,4 +71,19 @@ class UserController:
 message_controller = MessageController()
 user_controller = UserController()
 
+while True:
+    print("=== Messaging System ===")
+    print("1. Register")
+    print("2. Login")
+    print("3. Quit")
+    choice = input("Enter your choice: ")
 
+    if choice == "1":
+        print("=== Register ===")
+        username = input("Enter username: ")
+        password = input("Enter password: ")
+        is_admin = input("Is user an admin? (y/n): ").lower() == "y"
+        user_controller.create_user(username, password, is_admin)
+        print("Registration successful!")
+    
+        
