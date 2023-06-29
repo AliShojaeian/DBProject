@@ -77,7 +77,6 @@ while True:
     print("2. Login")
     print("3. Quit")
     choice = input("Enter your choice: ")
-
     if choice == "1":
         print("=== Register ===")
         username = input("Enter username: ")
@@ -85,5 +84,13 @@ while True:
         is_admin = input("Is user an admin? (y/n): ").lower() == "y"
         user_controller.create_user(username, password, is_admin)
         print("Registration successful!")
-    
-        
+    elif choice == "2":
+        print("=== Login ===")
+        username = input("Enter username: ")
+        password = input("Enter password: ")
+        user = user_controller.login(username, password)
+        if user:
+            print("Login successful!")
+            
+
+
