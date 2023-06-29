@@ -102,6 +102,40 @@ while True:
                     print("2. New Messages")
                     print("3. Logout")
                 user_choice = input("Enter your choice: ")
+                if user_choice == "1":
+                    sender = user.username
+                    receiver = input("Enter receiver's username: ")
+                    content = input("Enter message content: ")
+                    message_controller.send_message(sender, receiver, content)
+                    print("Message sent successfully!")
+                elif user_choice == "2":
+                    if user.isAdmin:
+                        content = input("Enter message content: ")
+                        all_users = session.query(User).all()
+                        for u in all_users:
+                            if u.username != user.username:
+                                message_controller.send_message(user.username, u.username, content)
+                        print("Message sent to all users!")
+                    else:
+                        print("=== Your Messages ===")
+                        messages = session.query(Message).filter_by(receiver=user.username, isRead=False).all()
+                        if messages:
+                            for i, message in enumerate(messages):
+                                print(f"Message {i + 1}:")
+                                display_message(message)
+                                print()
+
+                            message_choice = input("Enter the message number to mark as read (0 to cancel): ")
+                            if message_choice.isdigit():
+                                message_choice = int(message_choice)
+                                if 1 <= message_choice <= len(messages):
+                                    message = messages[message_choice - 1]
+                                    message_controller.mark_as_read(message)
+                                    print("Message marked as read.")
+                                elif message_choice != 0:
+                                    print("Invalid message number.")
+                        else:
+                            print("No unread messages.")
 
                 
 
