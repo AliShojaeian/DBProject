@@ -45,6 +45,17 @@ def display_user(user):
     print(f"Is Admin: {'Yes' if user.isAdmin else 'No'}")
 
 
-
+class MessageController:
+    def send_message(self, sender, receiver, content):
+        date= datetime.now()
+        isRead = False
+        
+        message = Message(sender=sender, receiver=receiver, content=content , date=date , isRead=isRead)
+        session.add(message)
+        session.commit()
+        
+    def mark_as_read(self,message):
+        message.isRead = True
+        session.commit()
 
         
