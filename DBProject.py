@@ -137,6 +137,31 @@ while True:
                         else:
                             print("No unread messages.")
 
+                elif user_choice == "3":
+                    if not user.isAdmin:
+                        print("Logged out successfully.")
+                        break
+                    else:
+                        print("=== All Messages ===")
+                        messages = session.query(Message).all()
+                        if messages:
+                            for i, message in enumerate(messages):
+                                print(f"Message {i + 1}:")
+                                display_message(message)
+                                print()
                 
+                elif user.isAdmin and user_choice == "4":
+                    print("Logged out successfully.")
+                    break
+                else:
+                    print("Invalid choice. Please try again.")
+        else:
+            print("Invalid username or password.")
+            continue
+    elif choice == "3":
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid choice. Please try again.")
 
 
