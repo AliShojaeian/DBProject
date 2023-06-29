@@ -57,5 +57,18 @@ class MessageController:
     def mark_as_read(self,message):
         message.isRead = True
         session.commit()
+class UserController:
+    def create_user(self, username, password, is_admin):
+        user = User(username=username, password=password, isAdmin=is_admin)
+        session.add(user)
+        session.commit()
 
-        
+    def login(self, username, password):
+        user = session.query(User).filter_by(username=username, password=password).first()
+        return user
+
+
+message_controller = MessageController()
+user_controller = UserController()
+
+
