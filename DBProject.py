@@ -91,6 +91,18 @@ while True:
         user = user_controller.login(username, password)
         if user:
             print("Login successful!")
-            
+            while True:
+                print("=== User Menu ===")
+                print("1. Send Message")
+                if user.isAdmin:
+                    print("2. Send Message to All Users")
+                    print("3. View All Messages")
+                    print("4. Logout")
+                else:
+                    print("2. New Messages")
+                    print("3. Logout")
+                user_choice = input("Enter your choice: ")
+
+                
 
 
