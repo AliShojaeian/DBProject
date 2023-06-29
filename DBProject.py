@@ -32,6 +32,19 @@ class Message(Base):
 
 Base.metadata.create_all(engine)
 
+def display_message(message):
+    print(f"Sender: {message.sender}")
+    print(f"Receiver: {message.receiver}")
+    print(f"Content: {message.content}")
+    print(f"Date: {message.date}")
+    print(f"Is Read: {'Yes' if message.isRead else 'No'}")
+
+
+def display_user(user):
+    print(f"Username: {user.username}")
+    print(f"Is Admin: {'Yes' if user.isAdmin else 'No'}")
+
+
 
 
         
